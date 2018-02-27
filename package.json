@@ -1,0 +1,26 @@
+{
+  "name": "ac_jieba",
+  "version": "1.0.0",
+  "description": "ac关键词分析小工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "spider": "rm -rf build/ && babel src/ -d build/ --source-maps && node build/index.js"
+  },
+  "author": "santree",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "nodejieba": "^2.2.5"
+  },
+  "dependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "cheerio": "^1.0.0-rc.2",
+    "node-fetch": "1.7.3"
+  }
+}
