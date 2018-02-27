@@ -21,6 +21,6 @@
     "babel-preset-stage-3": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "cheerio": "^1.0.0-rc.2",
-    "node-fetch": "1.7.3"
+    "node-fetch": "2.0.0"
   }
 }
