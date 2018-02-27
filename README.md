@@ -2,7 +2,7 @@
 
 #### 基于库
 - node-fetch
-- babel (使用stage-0，async/awat进行异步操作)
+- babel (使用async/awat进行异步操作)
 - cheerio
 - nodejieba
 
@@ -12,7 +12,7 @@
 - cnpm run spider
 
 #### 有何意义
-获取了情感区的关键字，意义在于想从文章中频率最高的关键词中分析出acer至今单身群体如此众多的关键（大雾。
+获取了情感区的关键字，意义在于想从文章中频率最高的关键词中分析出acer至今单身群体如此众多的原因（大雾。
 
 #### 运行时看起来是什么样的？
 !['这是开始的展示'](http://ot0t8s1mo.bkt.clouddn.com/F7496245-81E1-483D-AA4E-CCA8A9698246.png)
