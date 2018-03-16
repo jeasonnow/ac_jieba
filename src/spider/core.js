@@ -1,6 +1,5 @@
 import util from '../utils/fetch';
 import cheerio from 'cheerio';
-import log from '../utils/log';
 
 const ARTICLE_LIST_URL = 'http://webapi.aixifan.com/query/article/list?';
 const ARTICLE_DETAIL_URL_PREFIX = 'http://www.acfun.cn/a/ac';
@@ -10,7 +9,6 @@ const CONTENT_CLASS = '.article-content';
 // input: page 页数
 // output: promise 获取当前页数的数据结果
 function fetchInfoFromAcfun(page) {
-    log.log(`正在获取第${page}页的结果....`);
     let similarConfig = {
         json: true,
         headers: {
@@ -31,13 +29,10 @@ function fetchInfoFromAcfun(page) {
         
         let requestBody = `pageNo=${page}&size=10&realmIds=7&originalOnly=false&orderType=1&periodType=-1&filterTitleImage=true`;
 
-        log.log(`${ARTICLE_LIST_URL}${requestBody}`);        
 
         util.donwloadPageData(`${ARTICLE_LIST_URL}${requestBody}`, 'json').then((res) => {
             resolve(res);
         }, (e) => {
-            log.log('获取结果失败!');
-            log.log('失败原因:' + e);
             reject(e);
         });      
     })
@@ -47,7 +42,6 @@ function fetchInfoFromAcfun(page) {
 // input: id 文章id
 // output: promise 获取当前页面文档结果的Promise
 function fetchPageBodyById(id) {
-    log.log(`正在获取${ARTICLE_DETAIL_URL_PREFIX}${id}的文章的页面结构...`);
     return new Promise((resolve, reject) => {
         util.donwloadPageData(`${ARTICLE_DETAIL_URL_PREFIX}${id}`, 'text').then((res) => {
             resolve(res);
@@ -59,7 +53,6 @@ function fetchPageBodyById(id) {
 // input: html结构
 // output: content 文章内容
 function getDetailString(html) {
-    log.log(`正在获取文章内容....`);
     let $ = cheerio.load(html);
     let content = $(CONTENT_CLASS).text().replace(/<\/?.+?>/g,"").replace(/ /g,"");
 
@@ -73,7 +66,6 @@ function getDetailString(html) {
  */
 export default {
     getArticleId: (pages) => {
-        log.log('开始获取文章id...');
         let getArticlePromiseStack = [];
         let articleIds = [];
         if (Array.isArray(pages)) {
@@ -103,17 +95,14 @@ export default {
                         articleIds.push(articleInfo);
                     });
                 });
-                log.log('获取文章id完成!');
                 resolve(articleIds);
             }, (err) => {
-                log.log('获取文章id失败~');
                 reject(err);
             });
         });
     },
 
     getArticleDetail: (id) => {
-        log.log('正在输出文章内容...');
         return new Promise((resolve, reject) => {
             fetchPageBodyById(Number(id)).then((res) => {
                 let content = getDetailString(res);

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "spider": "rm -rf build/ && babel src/ -d build/ --source-maps && node build/index.js"
+    "spider": "rm -rf build/ && babel src/ -d build/ && node build/index.js"
   },
   "author": "santree",
   "license": "ISC",
