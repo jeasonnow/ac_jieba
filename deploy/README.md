@@ -2,10 +2,9 @@
 
 #### BASE
 - node-fetch
-- babel (使用async/awat进行异步操作)
+- babel-runtime
 - cheerio
 - nodejieba
-- yarn
 
 #### API
 - initArticleType （初始化文章区分类）
