@@ -36,7 +36,7 @@ async function fetchDetailFromId() {
 
 function getKeyWordFromContent(contentArr) {
     let keyWordArr = [];
-    contentArr.forEach((article) => {
+    contentArr.forEach((content) => {
         let keyword = jieba.getKeyword(content);
         keyWordArr.push(keyword);
     });
@@ -85,7 +85,7 @@ async function getKeywords() {
 /**
  * 
  * @param {*} pageArr 
- * @returns {array <object>} 
+ * @returns {promise} 
  * {
  *  title: 文章标题
  *  author: 作者,
@@ -95,28 +95,31 @@ async function getKeywords() {
  *  content: 文章内容
  * }
  */
-async function getArticleInfoByPage(pageArr) {
-    let articleInfo = await spider.getArticleId(pageArr);
-    let itemIndex = 0;
-    let articleFullInfoArr = [];
-    let getFunc = () => {
-        let content = await spider.getArticleDetail(articleInfo[itemIndex]["id"]);
+function getArticleInfoByPage(pageArr) {
+    return new Promise(async (resolve, reject) => {
+        let articleInfo = await spider.getArticleId(pageArr);
+        let itemIndex = 0;
+        let articleFullInfoArr = [];
+        let getFunc = async () => {
+            let content = await spider.getArticleDetail(articleInfo[itemIndex]["id"]);
 
-        articleFullInfoArr.push(Object.assign({}, articleInfo[itemIndex], { content }));
+            articleFullInfoArr.push(Object.assign({}, articleInfo[itemIndex], { content })); 
 
-        if (itemIndex < articleInfo.length - 1) {
-            itemIndex++;
-            return getFunc();
-        } else {
-            return articleFullInfoArr;
+
+            if (itemIndex < articleInfo.length - 1) {
+                itemIndex++;
+                return getFunc();
+            } else {
+                resolve(articleFullInfoArr);
+            }
         }
-    }
 
-    return getFunc();
+        getFunc();
+    });
 }
 
 /**
- * 根据传入的页数或者页数数组，获取当前页数的
+ * 根据传入的页数或者页数数组，获取当前页数的文章ID
  * @param {*} pageArr 
  * @returns {array} 文章ID数组
  */
@@ -127,11 +130,12 @@ async function getArticleIdByPage(pageArr) {
     return idInfo;
 }
 
-getArticleIdByPage();
-getArticleInfoByPage();
-getKeywords();
+function initArticleType(type) {
+    spider.initSpiderArticleType(type);
+}
 
 module.exports = {
+    initArticleType,
     getKeywords,
     getArticleInfoByPage,
     getArticleIdByPage

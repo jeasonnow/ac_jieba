@@ -4,6 +4,79 @@ import cheerio from 'cheerio';
 const ARTICLE_LIST_URL = 'http://webapi.aixifan.com/query/article/list?';
 const ARTICLE_DETAIL_URL_PREFIX = 'http://www.acfun.cn/a/ac';
 const CONTENT_CLASS = '.article-content';
+const REAL_MIDS = [
+    {
+        name: '游记',
+        type: 17
+    },
+    {
+        name: '涂鸦',
+        type: 18
+    },
+    {
+        name: '杂谈',
+        type: 5
+    },
+    {
+        name: '美食',
+        type: 1
+    },
+    {
+        name: '萌宠',
+        type: 2
+    },
+    {
+        name: '自媒体',
+        type: 4
+    },
+    {
+        name: '工作',
+        type: 6
+    },
+    {
+        name: '情感',
+        type: 7
+    },
+    {
+        name: '动漫杂谈',
+        type: 13
+    },
+    {
+        name: '美图',
+        type: 14
+    },
+    {
+        name: '漫画',
+        type: 15
+    },
+    {
+        name: '文学',
+        type: 16
+    },
+    {
+        name: '游戏杂谈',
+        type: 8
+    },
+    {
+        name: 'LOL',
+        type: 11
+    },
+    {
+        name: 'WOW',
+        type: 10
+    },
+    {
+        name: 'PUBG',
+        type: 9
+    },
+    {
+        name: '炉石',
+        type: 12
+    }
+];
+
+// 默认显示文章区
+let articleType = 7; 
 
 // 通过爬取每一页的数据获得当前页面的所有获取数据的promise
 // input: page 页数
@@ -27,7 +100,7 @@ function fetchInfoFromAcfun(page) {
 
     return new Promise(async (resolve, reject) => {
         
-        let requestBody = `pageNo=${page}&size=10&realmIds=7&originalOnly=false&orderType=1&periodType=-1&filterTitleImage=true`;
+        let requestBody = `pageNo=${page}&size=10&realmIds=${articleType}&originalOnly=false&orderType=1&periodType=-1&filterTitleImage=true`;
 
 
         util.donwloadPageData(`${ARTICLE_LIST_URL}${requestBody}`, 'json').then((res) => {
@@ -61,10 +134,18 @@ function getDetailString(html) {
 
 /**
  * api: 
- * 1. getArticleId {function} 获取对应页数的文章id 返回的是promise
- * 2. getArticleDetail {function} 获取对应id文章内容 返回的是一个promise
+ * 1. initSpiderArticleType 初始化文章分类默认情感区
+ * 2. getArticleId {function} 获取对应页数的文章id 返回的是promise
+ * 3. getArticleDetail {function} 获取对应id文章内容 返回的是一个promise
  */
 export default {
+    initSpiderArticleType: (name) => {
+        REAL_MIDS.forEach((idInfo) => {
+            if (name === idInfo.name) {
+                articleType = idInfo.type;
+            }
+        })
+    },
     getArticleId: (pages) => {
         let getArticlePromiseStack = [];
         let articleIds = [];
