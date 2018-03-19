@@ -18,7 +18,9 @@
 
 
 #### HOW TO START
-- npm install acfun-article-spider
+````javascript
+    npm install acfun-article-spider
+```` 
 
 #### API
 - initArticleType （初始化文章区分类）
