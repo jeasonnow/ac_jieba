@@ -13,5 +13,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
     writeFile: function writeFile(filename, content) {
         _fs2.default.writeFileSync(filename, content);
+    },
+    readJsonFile: function readJsonFile(filename) {
+        var content = _fs2.default.readFileSync(filename);
+        return JSON.parse(content);
     }
 };
