@@ -8,6 +8,7 @@ install:
 - npm install -g yarn
 - yarn install
 - npm install -g mocha
+- npm install -g babel-cli
 
 script: 
 - npm run test
