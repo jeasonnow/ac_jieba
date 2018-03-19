@@ -4,7 +4,7 @@
   "description": "acfun文章区爬虫工具",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/test.js",
     "prepub": "rm -rf build/ && babel src/ -d deploy/ && node deploy/utils/build.js",
     "spider": "rm -rf build/ && babel src/ -d build/ && node build/index.js",
     "pub": "cd deploy && npm publish"
@@ -24,6 +24,7 @@
     "babel-preset-stage-3": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "cheerio": "^1.0.0-rc.2",
+    "mocha": "^5.0.4",
     "node-fetch": "1.7.3"
   }
 }
