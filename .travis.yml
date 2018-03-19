@@ -3,14 +3,14 @@ language: node_js
 node_js: 
  - '8'
 
+before_install:
+- npm adduser 
+
 install:
 - npm install
 - npm install -g yarn
 - yarn install
 - npm install -g mocha
-- npm install -g babel-cli
 
 script: 
 - npm run test
-- npm run prepub
-- npm run pub
