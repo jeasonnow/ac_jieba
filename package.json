@@ -10,7 +10,7 @@
     "pub": "cd deploy && npm publish"
   },
   "author": "santree",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-polyfill": "^6.26.0",

@@ -11,7 +11,7 @@
 
 #### BASE
 - node-fetch
-- babel (使用async/awat进行异步操作)
+- babel
 - cheerio
 - nodejieba
 - yarn
