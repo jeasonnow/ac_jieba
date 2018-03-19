@@ -1,11 +1,24 @@
 ## acfun-article-spider (ACFUN文章区爬虫工具)
 
+
+
+![license](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![npm](https://img.shields.io/badge/downloads-86-green.svg)](https://www.npmjs.com/package/acfun-article-spider)
+[![npm](https://img.shields.io/badge/npm-v1.0.4-green.svg)](https://www.npmjs.com/package/acfun-article-spider)
+
+
+
+
 #### BASE
 - node-fetch
 - babel (使用async/awat进行异步操作)
 - cheerio
 - nodejieba
 - yarn
+
+
+#### HOW TO START
+- npm install acfun-article-spider
 
 #### API
 - initArticleType （初始化文章区分类）
@@ -48,5 +61,3 @@ var secondPageIds= acArticleSpider.getArticleIdByPage([1, 2]);
 // 获取前两页的文章ID
 ````
 
-#### HOW TO START
-- npm install acfun-article-spider

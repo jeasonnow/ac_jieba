@@ -1,6 +1,6 @@
 {
   "name": "acfun-article-spider",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "acfun文章区爬虫工具",
   "main": "index.js",
   "scripts": {

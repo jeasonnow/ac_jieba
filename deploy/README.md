@@ -6,6 +6,9 @@
 - cheerio
 - nodejieba
 
+#### HOW TO START
+- npm install acfun-article-spider
+
 #### API
 - initArticleType （初始化文章区分类）
 ````javascript
@@ -47,5 +50,5 @@ var secondPageIds= acArticleSpider.getArticleIdByPage([1, 2]);
 // 获取前两页的文章ID
 ````
 
-#### HOW TO START
-- npm install acfun-article-spider
+#### GITHUB
+[点击这里去GITHUB](https://github.com/jeasonnow/ac_jieba)
