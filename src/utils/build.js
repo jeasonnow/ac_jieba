@@ -12,7 +12,10 @@ function updatePackgeJson() {
     } else {
         if (versionArr[1] < 9) {
             versionArr[1]++;
+            versionArr[2] = 0;
         } else {
+            versionArr[1] = 0;
+            versionArr[2] = 0;
             versionArr[0]++; 
         }
     }
