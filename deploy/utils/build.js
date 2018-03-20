@@ -19,7 +19,11 @@ function updatePackgeJson() {
     if (versionArr[2] < 9) {
         versionArr[2]++;
     } else {
-        versionArr[0]++;
+        if (versionArr[1] < 9) {
+            versionArr[1]++;
+        } else {
+            versionArr[0]++;
+        }
     }
 
     var newVersion = versionArr.join('.');
